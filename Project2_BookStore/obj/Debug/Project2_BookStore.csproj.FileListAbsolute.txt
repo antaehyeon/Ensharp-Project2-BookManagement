@@ -1,0 +1,54 @@
+c:\users\안태현\documents\visual studio 2015\Projects\Project2_BookStore\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+c:\users\안태현\documents\visual studio 2015\Projects\Project2_BookStore\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+c:\users\안태현\documents\visual studio 2015\Projects\Project2_BookStore\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+c:\users\안태현\documents\visual studio 2015\Projects\Project2_BookStore\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+c:\users\안태현\documents\visual studio 2015\Projects\Project2_BookStore\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+c:\users\안태현\documents\visual studio 2015\Projects\Project2_BookStore\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Taehyeon AN\Desktop\Project2_BookStore (3)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\Taehyeon AN\Desktop\Project2_BookStore (3)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\Taehyeon AN\Desktop\Project2_BookStore (3)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Taehyeon AN\Desktop\Project2_BookStore (3)\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+C:\Users\Taehyeon AN\Desktop\Project2_BookStore (3)\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+C:\Users\Taehyeon AN\Desktop\Project2_BookStore (3)\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+C:\Users\안태현\Desktop\Project2_BookStore (5)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\안태현\Desktop\Project2_BookStore (5)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\안태현\Desktop\Project2_BookStore (5)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\안태현\Desktop\Project2_BookStore (5)\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+C:\Users\안태현\Desktop\Project2_BookStore (5)\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+C:\Users\안태현\Desktop\Project2_BookStore (5)\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Project2_BookStore (6)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\Administrator\Desktop\Project2_BookStore (6)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\Administrator\Desktop\Project2_BookStore (6)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Administrator\Desktop\Project2_BookStore (6)\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+C:\Users\Administrator\Desktop\Project2_BookStore (6)\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+C:\Users\Administrator\Desktop\Project2_BookStore (6)\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\Administrator\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\Administrator\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Administrator\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+C:\Users\Administrator\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+C:\Users\Administrator\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+C:\Users\나영\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\나영\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\나영\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Semin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\Semin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\Semin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Semin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+C:\Users\Semin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+C:\Users\Semin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+C:\Users\SungMin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\SungMin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\SungMin\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\이명호\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\이명호\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\이명호\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Lee\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\Lee\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\Lee\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
+C:\Users\Lee\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+C:\Users\Lee\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+C:\Users\Lee\Dropbox\16기\스터디\안태현\도서관리 프로그램\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Project2 BookStore (최종)\Project2_BookStore\bin\Debug\Project2_BookStore.exe.config
+C:\Users\Administrator\Desktop\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.exe
+C:\Users\Administrator\Desktop\Project2 BookStore (최종)\Project2_BookStore\obj\Debug\Project2_BookStore.pdb
