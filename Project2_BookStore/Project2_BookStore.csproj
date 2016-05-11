@@ -45,11 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookManagement.cs" />
+    <Compile Include="BookVO.cs" />
     <Compile Include="Exception.cs" />
     <Compile Include="MemberManagement.cs" />
-    <Compile Include="PrintMenu.cs" />
+    <Compile Include="MemberVO.cs" />
+    <Compile Include="Print.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharingData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
