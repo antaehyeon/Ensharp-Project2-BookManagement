@@ -21,56 +21,83 @@ namespace Project2_BookStore
 
 
         // 화살표로 움직일 수 있게 해주는 메소드
-        public int moveArrow(int pWidth, int pHeight, int menuNumber)
+        public int moveArrow(int pWidth, int pHeight, int menuNumber, int mode)
         {
             ConsoleKeyInfo cki;
             int width = pWidth, height = pHeight;
 
-            Console.Clear();
-
-            Console.SetCursorPosition(width, height);
-            Console.Write('→');
-
-            // KEY 의 입력을 받는 부분
-            cki = Console.ReadKey(true);
-            switch (cki.Key)
+            while (true)
             {
-                case ConsoleKey.UpArrow:
-                    height--;
-                    break;
-                case ConsoleKey.DownArrow:
-                    height++;
-                    break;
-                case ConsoleKey.Enter:
-                    return height;
-            }
+                Console.Clear();
+                switch (mode)
+                {
+                    case 1: // 첫화면
+                        firstMenu();
+                        break;
+                    case 2:
+                        memberMenu();
+                        break;
 
-            // 맨위에서 UpArrow 이벤트가 발생했을 때(즉 위방향키를 눌렀을 때) 맨 아래로 가게해주도록 설계
-            if (height == pHeight - 1)
-            {
-                height = pHeight + menuNumber - 1;
+                }
+
+
+
+                Console.SetCursorPosition(width, height);
+                Console.Write('→');
+
+                // KEY 의 입력을 받는 부분
+                cki = Console.ReadKey(true);
+                switch (cki.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        height--;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        height++;
+                        break;
+                    case ConsoleKey.Enter:
+                        return height;
+                }
+
+                // 맨위에서 UpArrow 이벤트가 발생했을 때(즉 위방향키를 눌렀을 때) 맨 아래로 가게해주도록 설계
+                if (height == pHeight - 1)
+                {
+                    height = pHeight + menuNumber - 1;
+                }
+                else if (height == pHeight + menuNumber)
+                {
+                    height = pHeight;
+                }
             }
-            else if (height == pHeight + menuNumber)
-            {
-                height = pHeight;
-            }
-            return 0;
         }
         // 메뉴관련 출력
-        public void printFirstMenu()
+        public void firstMenu()
         {
             // Console 창의 크기를 조절
             Console.SetWindowSize(124, 40);
             Console.Clear();
             title("도서관리 프로그램");
 
-            Console.WriteLine(hangleCenterArrange(124, "[  ] 회원 관리"));
-            Console.WriteLine(hangleCenterArrange(124, "[  ] 도서 관리"));
-            Console.WriteLine(hangleCenterArrange(124, "[  ] 도서 대여"));
-            Console.WriteLine(hangleCenterArrange(124, "[  ] 도서 반납"));
-            Console.WriteLine(hangleCenterArrange(124, "[  ] 종     료"));
+            Console.Write(hangleCenterArrange(124, "[  ] 회원 관리"));
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 관리"));
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 대여"));
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 반납"));
+            Console.Write(hangleCenterArrange(124, "[  ] 종     료"));
+        } // method - printFirstMenu
 
-            Console.WriteLine("\n\n━━━━━━━━━━━━━━━━━━");
+        public void memberMenu()
+        {
+            // Console 창의 크기를 조절
+            Console.SetWindowSize(124, 40);
+            Console.Clear();
+            title("회원 관리");
+
+            Console.Write(hangleCenterArrange(124, "[  ] 회원 등록"));
+            Console.Write(hangleCenterArrange(124, "[  ] 회원 수정"));
+            Console.Write(hangleCenterArrange(124, "[  ] 회원 삭제"));
+            Console.Write(hangleCenterArrange(124, "[  ] 회원 검색"));
+            Console.Write(hangleCenterArrange(124, "[  ] 회원 출력"));
+            Console.Write(hangleCenterArrange(124, "[  ] 뒤로 가기"));
         } // method - printFirstMenu
 
 
@@ -84,10 +111,26 @@ namespace Project2_BookStore
             Console.WriteLine(" 아이디는 영어와 숫자로만 구성이 가능합니다");
             Console.WriteLine(" 아이디는 중복될 수 없습니다");
             Console.WriteLine(" 등록하실 ID를 입력하세요 (뒤로가시려면 b 를 입력하세요)");
-            Console.WriteLine(" → ");
+            Console.Write(" → ");
         }
 
-        public void LengthOverMessage()
+        public void lengthNotSatisfyMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("ID가 너무 짧습니다");
+            Console.ReadKey();
+        }
+
+        public void idFirstLetterNoNumMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("ID의 첫 문자는 숫자로 시작할 수 없습니다");
+            Console.ReadKey();
+        }
+
+        public void lengthOverMessage()
         {
             Console.Clear();    
             Console.WriteLine("\n\n\n\n");
@@ -124,8 +167,8 @@ namespace Project2_BookStore
         {
             Console.Clear();
             title("패스워드 설정");
-            Console.WriteLine("\n 패스워드를 입력하세요");
-            Console.WriteLine(" → ");
+            Console.WriteLine("\n 패스워드를 입력하세요 (뒤로 가시려면 b를 눌러주세요)");
+            Console.Write(" → ");
         }
 
         public void disaccordPw()
@@ -140,14 +183,14 @@ namespace Project2_BookStore
         {
             Console.Clear();
             Console.WriteLine("\n\n\n\n");
-            title("ID는 NULL 이거나 공백일 수 없습니다");
+            title("패스워드는 NULL 이거나 공백일 수 없습니다");
             Console.ReadKey();
         }
 
         public void checkPwMessage()
         {
             Console.WriteLine("\n 패스워드를 한번 더 입력하세요");
-            Console.WriteLine(" → ");
+            Console.Write(" → ");
         }
 
         // 이름 관련 출력
@@ -157,12 +200,14 @@ namespace Project2_BookStore
             title("이름 입력");
             Console.WriteLine("\n 이름은 2자부터 6자까지 한글로만 가능합니다");
             Console.WriteLine(" 이름을 입력하세요 (뒤로가시려면 b 를 입력하세요)");
-            Console.WriteLine(" → ");
+            Console.Write(" → ");
         }
 
         public void nameErrorMessage()
         {
-            Console.WriteLine("이름 제한조건을 다시 확인하세요");
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("이름 제한조건을 다시 확인하세요");
             Console.ReadKey();
         }
 
@@ -173,7 +218,7 @@ namespace Project2_BookStore
             title("핸드폰번호 입력");
             Console.WriteLine("\n 핸드폰번호는 10-11자리만 가능합니다");
             Console.WriteLine(" 핸드폰번호를 입력하세요 (뒤로가시려면 b 를 입력하세요)");
-            Console.WriteLine(" → ");
+            Console.Write(" → ");
         }
 
         public void phoneNumLengthOverMessage()
@@ -182,6 +227,39 @@ namespace Project2_BookStore
             Console.WriteLine("\n\n\n\n");
             title("핸드폰번호 자릿수를 지켜주세요");
             Console.ReadKey();
+        }
+
+        public void existsPhoneNumMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("핸드폰번호가 중복됩니다");
+            Console.ReadKey();
+        }
+
+        // 결과 출력
+
+        public void idRegisterSccessMessage()
+        {
+            int memberNumber = sd.MemberList.Count();
+
+            Console.Clear();
+            title("정상 등록");
+            Console.WriteLine("\n");
+            Console.WriteLine(" ID : {0}", sd.MemberList[memberNumber - 1].MemberID);
+            Console.WriteLine(" 이름 : {0}", sd.MemberList[memberNumber - 1].MemberName);
+            Console.WriteLine(" 핸드폰번호 : {0}", sd.MemberList[memberNumber - 1].PhoneNum);
+            Console.WriteLine("\n {0} 에 정상적으로 등록되었습니다", sd.MemberList[memberNumber - 1].CreateTime);
+            Console.ReadKey();
+        }
+
+        // 종료메뉴
+        public void exitMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n");
+            title("도서관리 프로그램을 종료합니다");
+            Environment.Exit(0);
         }
 
         // length (총길이), strData (문자열) 을 이용해서

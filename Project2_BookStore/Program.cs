@@ -10,21 +10,11 @@ namespace Project2_BookStore
     {
         static void Main(string[] args)
         {
+            Run run = new Run();
             Console.Title = "도서관리 프로그램 - 안태현";
 
-            Print p = new Print();
-            MemberManagement member = new MemberManagement();
-            BookManagement book = new BookManagement();
+            run.start();
 
-            Console.SetWindowSize(124, 40);
-            p.printFirstMenu();
-            string selectMenu = Console.ReadLine();
-
-            switch(selectMenu)
-            {
-                case "1":
-                    break;
-            } // switch
         } // Main
     }
 }

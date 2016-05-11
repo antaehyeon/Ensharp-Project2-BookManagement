@@ -9,14 +9,15 @@ namespace Project2_BookStore
     class SharingData
     {
         private static SharingData sdata;
-        List<MemberVO> memberList;
-        List<BookVO> bookList;
+        private List<MemberVO> memberList;
+        private List<BookVO> bookList;
 
         public SharingData()
         {
             MemberList = new List<MemberVO>();
             BookList = new List<BookVO>();
-        } 
+        }
+
 
         public static SharingData GetInstance()
         {
