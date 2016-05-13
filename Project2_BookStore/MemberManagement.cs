@@ -13,10 +13,12 @@ namespace Project2_BookStore
         private SharingData sd;
         private Run run;
 
-        string ID;
-        string name;
-        string phoneNum;
-        string PW;
+        private string ID;
+        private string name;
+        private string phoneNum;
+        private string PW;
+
+        private int index;
 
         public MemberManagement(Run run)
         {
@@ -28,104 +30,24 @@ namespace Project2_BookStore
 
         public void registerID(int mode)
         {
-            if (mode == 1) // ID 입력받기
+            switch (mode)
             {
-                print.enterIdMessage();
-                ID = Console.ReadLine();
-                if (ID == "b") run.startMember(); // 뒤로가기
-                if (string.IsNullOrWhiteSpace(ID)) // 문자열이 공백이거나 NULL 일경우
-                {
-                    print.idIsNullMessage(); // ERROR
-                    this.registerID(1); // 재귀
-                }
-                if (ID.Length < 8) // ID가 너무 짧을경우
-                {
-                    print.lengthNotSatisfyMessage(); // ERROR
-                    this.registerID(1);
-                }
-                if (exception.stringFirstLetterCheck(ID)) // ID 첫문자가 숫자일경우
-                {
-                    print.idFirstLetterNoNumMessage(); // ERROR
-                    this.registerID(1);
-                }
-                if (exception.stringLength(ID, 14)) // 입력받은 문자의 길이가 14를 넘는조건
-                {
-                    print.lengthOverMessage(); // ERROR
-                    this.registerID(1); 
-                }
-                if (exception.stringCheck(ID, 1)) // 영어와 숫자만 들어가있는지 판별
-                {
-                    print.onlyEnglishAndNumMessage(); // ERROR
-                    this.registerID(1);
-                }
-                for (int i = 0; i < sd.MemberList.Count; i++) // 등록되있는 Member List 에서
-                {
-                    if(sd.MemberList[i].MemberID == ID) // ID가 중복되는지 검사
-                    {
-                        print.duplicationIdMessage(); // ERROR
-                        this.registerID(1);
-                    }
-                }
-                mode = 2;
-            }
-
-            if(mode == 2) // 패스워드 입력받기
-            {
-                string tempPW;
-
-                print.enterPwMessage();
-                PW = showStarPW();
-                if (PW == "b") run.startMember();
-                print.checkPwMessage();
-                tempPW = showStarPW();
-                if (tempPW == "b") run.startMember();
-
-                if (PW != tempPW) // 입력한 두개의 패스워드가 일치하지 않을 때
-                {
-                    print.disaccordPw(); // ERROR
+                case 1: // ID
+                    ID = enterIdFunction();
                     this.registerID(2);
-                }
-                if(string.IsNullOrWhiteSpace(PW)) // 패스워드가 NULL이거나 공백만 있을경우
-                {
-                    print.pwIsNullMessage(); // ERROR
-                    this.registerID(2);
-                }
-                mode = 3;
-            }           
-
-            if (mode == 3) // 이름 입력받기
-            {
-                print.enterName();
-                name = Console.ReadLine();
-                if (name == "b") run.startMember();
-                if (exception.stringCheck(name, 2))
-                {
-                    print.nameErrorMessage();
+                    break;
+                case 2: // PW
+                    PW = enterPwFunction();
                     this.registerID(3);
-                }
-                mode = 4;
-            }            
-
-            if (mode == 4) // 핸드폰번호 입력받기
-            {
-                print.enterPhoneNum();
-                phoneNum = Console.ReadLine();
-                if (phoneNum == "b") run.startMember();
-                if (exception.stringCheck(phoneNum, 3))
-                {
-                    print.phoneNumLengthOverMessage();
+                    break;
+                case 3: // Name
+                    name = enterNameFunction();
                     this.registerID(4);
-                }
-                for (int i = 0; i < sd.MemberList.Count; i++)
-                {
-                    if (phoneNum == sd.MemberList[i].PhoneNum)
-                    {
-                        print.existsPhoneNumMessage();
-                        this.registerID(4);
-                    }
-                }
+                    break;
+                case 4: // PhoneNumber
+                    phoneNum = enterPhoneNumFunction();
+                    break;
             }
-
             string creatTime = DateTime.Now.ToString();
 
             MemberVO data = new MemberVO(ID, name, creatTime, PW, phoneNum);
@@ -135,26 +57,213 @@ namespace Project2_BookStore
             run.startMember();
         }
 
+        // ID 입력받는 기능
+        public string enterIdFunction()
+        {
+            print.enterIdMessage();
+            ID = Console.ReadLine();
+            if (ID == "b") run.startMember(); // 뒤로가기
+            if (exception.idCheck(ID))
+            {
+                this.enterIdFunction();
+            }
+            return ID;
+        }
+
+        // 비밀번호 입력받는 기능
+        public string enterPwFunction()
+        {
+            string tempPW;
+            print.enterPwMessage();
+            PW = showStarPW();
+            if (PW == "b") run.startMember();
+            print.checkPwMessage();
+            tempPW = showStarPW();
+            if (tempPW == "b") run.startMember();
+
+            if(exception.pwCheck(PW, tempPW))
+            {
+                this.enterPwFunction();
+            }
+            return PW;
+        }
+        
+        // 이름 입력받는 기능
+        public string enterNameFunction()
+        {
+            print.enterName();
+            name = Console.ReadLine();
+            if (name == "b") run.startMember();
+            if (exception.stringCheck(name, 2))
+            {
+                print.nameErrorMessage();
+                this.enterNameFunction();
+            }
+            return name;
+        }
+
+        // 핸드폰 번호 입력받는 기능
+        public string enterPhoneNumFunction()
+        {
+            print.enterPhoneNum();
+            phoneNum = Console.ReadLine();
+            if (phoneNum == "b") run.startMember();
+            if (exception.phoneNumCheck(phoneNum))
+            {
+                this.enterPhoneNumFunction();
+            }
+            return phoneNum;
+        }
+
+        // 회원수정
         public void modifyMember()
         {
-
+            Console.Clear();
+            print.modifyMessage();
+            ID = Console.ReadLine();
+            if (ID == "b") run.startMember();
+            for (int index = 0; index < sd.MemberList.Count; index++)
+            {
+                if(ID == sd.MemberList[index].MemberID)
+                {
+                    print.enterPwForModify();
+                    PW = showStarPW();
+                    if (PW == "b") run.startMember();
+                    if (PW == sd.MemberList[index].PW)
+                    {
+                        run.modifyMenu();
+                        return;
+                    }
+                    else
+                    {
+                        print.discordPwMessage();
+                        index--;
+                        continue;
+                    }
+                }
+            }
+            print.notFindIdMessage();
+            this.modifyMember();
         }
 
+        // 이름수정
+        public void modifyName()
+        {
+            print.modifyName();
+            name = Console.ReadLine();
+            if (name == "b") this.modifyMember();
+            if (exception.stringCheck(name, 2))
+            {
+                this.modifyName();
+            }
+            sd.MemberList[index].MemberName = name;
+            print.modifySuccessResult();
+        }
+
+        // 핸드폰번호 수정
+        public void modifyPhoneNum()
+        {
+            print.enterPhoneNumForModify();
+            phoneNum = Console.ReadLine();
+            if(exception.phoneNumCheck(phoneNum))
+            {
+                this.modifyPhoneNum();
+            }
+            sd.MemberList[index].PhoneNum = phoneNum;
+            print.modifySuccessResult();
+        }
+
+        // 비밀번호 수정
+        public void modifyPassword()
+        {
+            print.enterPwForModify();
+            PW = Console.ReadLine();
+            if (exception.pwCheck(PW, PW))
+            {
+                this.modifyPassword();
+            }
+            sd.MemberList[index].PW = PW;
+            print.modifySuccessResult();
+        }
+
+        // 회원삭제
         public void deleteMember()
         {
-
+            print.enterIdForDelete();
+            ID = Console.ReadLine();
+            if (ID == "b") run.startMember();
+            index = findIndex(ID, 1);
+            if (index == -1) // MemberList에 ID가 없을경우
+            {
+                print.notFindIdMessage();
+                this.deleteMember();
+            }
+            while(true)
+            {
+                print.enterPwForDelete();
+                PW = showStarPW();
+                if (PW == "b") run.startMember();
+                if (sd.MemberList[index].PW == PW)
+                {
+                    print.deleteSuceessMessage();
+                    run.startMember();
+                }
+                else
+                {
+                    print.discordPwMessage();
+                    continue;
+                }
+            }
         }
 
-        public void searchMember()
+        // 회원검색 - 아이디
+        public void searchIdFunction()
         {
-
+            print.enterIdForSearch();
+            ID = Console.ReadLine();
+            if (ID == "b") run.searchMenu();
+            index = findIndex(ID, 1);
+            if (index == -1)
+            {
+                print.notFindIdMessage();
+                this.searchIdFunction();
+            }
+            print.searchIdResult(index);
+            run.searchMenu();
         }
 
+        // 회원검색 - 이름
+        public void searchNameFunction()
+        {
+            print.enterNameForSearch();
+            name = Console.ReadLine();
+            if (name == "b") run.searchMenu();
+
+            print.memberTitle();
+            for (int i = 0; i < sd.MemberList.Count; i++)
+            {
+                if(sd.MemberList[i].MemberName == name)
+                {
+                    print.memberResult(i);
+                    print.memberEndLine();
+                }
+            }
+            Console.ReadKey();
+        }
+
+        // 회원목록출력
         public void printMember()
         {
-
+            print.memberListTitle();
+            for (int i = 0; i < sd.MemberList.Count; i++)
+            {
+                print.memberResult(i);
+                print.memberEndLine();
+            }
+            Console.ReadKey();
         }
 
+        // 비밀번호 별로 보여주는 기능
         public string showStarPW()
         {
             ConsoleKeyInfo key;
@@ -182,6 +291,19 @@ namespace Project2_BookStore
 
             return pass;
         } // method - password
+
+        // 해당 요소(str)의 INDEX를 찾음
+        public int findIndex(string str, int mode)
+        {
+            for (int i = 0; i < sd.MemberList.Count; i++)
+            {
+                if (mode == 1 && sd.MemberList[i].MemberID == str)
+                    return i;
+                else if (mode == 2 && sd.MemberList[i].MemberName == str)
+                    return i;
+            }
+            return -1;
+        }
 
     } // Class - Management
 }

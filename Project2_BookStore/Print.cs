@@ -10,8 +10,6 @@ namespace Project2_BookStore
 {
     class Print
     {
-        MemberManagement member_manage;
-        BookManagement book_manage;
         SharingData sd;
 
         public Print()
@@ -32,15 +30,21 @@ namespace Project2_BookStore
                 switch (mode)
                 {
                     case 1: // 첫화면
-                        firstMenu();
+                        this.firstMenu();
                         break;
-                    case 2:
-                        memberMenu();
+                    case 2: // 멤버관리메뉴
+                        this.memberMenu();
                         break;
-
+                    case 3: // 수정메뉴
+                        this.selectModifyItem();
+                        break;
+                    case 4: // 검색메뉴
+                        this.selectSearchItem();
+                        break;
+                    case 5: // 도서메뉴
+                        this.bookMenu();
+                        break;
                 }
-
-
 
                 Console.SetCursorPosition(width, height);
                 Console.Write('→');
@@ -70,7 +74,7 @@ namespace Project2_BookStore
                 }
             }
         }
-        // 메뉴관련 출력
+        // 처음 메뉴 출력
         public void firstMenu()
         {
             // Console 창의 크기를 조절
@@ -85,6 +89,7 @@ namespace Project2_BookStore
             Console.Write(hangleCenterArrange(124, "[  ] 종     료"));
         } // method - printFirstMenu
 
+        // 회원쪽 메뉴 출력
         public void memberMenu()
         {
             // Console 창의 크기를 조절
@@ -100,7 +105,44 @@ namespace Project2_BookStore
             Console.Write(hangleCenterArrange(124, "[  ] 뒤로 가기"));
         } // method - printFirstMenu
 
+        // 수정 메뉴 출력
+        public void selectModifyItem()
+        {
+            Console.SetWindowSize(124, 40);
+            Console.Clear();
+            title("수정 메뉴");
 
+            Console.Write(hangleCenterArrange(124, "[  ] 이      름"));
+            Console.Write(hangleCenterArrange(124, "[  ] 핸드폰번호"));
+            Console.Write(hangleCenterArrange(124, "[  ] 패스  워드"));
+            Console.Write(hangleCenterArrange(124, "[  ] 뒤로  가기"));
+        }
+
+        // 검색 메뉴 출력
+        public void selectSearchItem()
+        {
+            Console.SetWindowSize(124, 40);
+            Console.Clear();
+            title("검색 메뉴");
+            Console.Write(hangleCenterArrange(124, "[  ] 아이디로 검색"));
+            Console.Write(hangleCenterArrange(124, "[  ] 이름으로 검색"));
+            Console.Write(hangleCenterArrange(124, "[  ] 뒤 로   가 기"));
+        }
+
+        // 도서 메뉴 출력
+        public void bookMenu()
+        {
+            Console.SetWindowSize(124, 40);
+            Console.Clear();
+            title("도서 관리");
+
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 등록"));
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 찾기"));
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 출력"));
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 삭제"));
+            Console.Write(hangleCenterArrange(124, "[  ] 도서 변경"));
+            Console.Write(hangleCenterArrange(124, "[  ] 뒤로 가기"));
+        }
 
         // ID 관련 출력
         public void enterIdMessage()
@@ -132,7 +174,7 @@ namespace Project2_BookStore
 
         public void lengthOverMessage()
         {
-            Console.Clear();    
+            Console.Clear();
             Console.WriteLine("\n\n\n\n");
             title("ID는 14자를 초과할 수 없습니다");
             Console.ReadKey();
@@ -159,6 +201,14 @@ namespace Project2_BookStore
             Console.Clear();
             Console.WriteLine("\n\n\n\n");
             title("중복된 ID는 등록하실 수 없습니다");
+            Console.ReadKey();
+        }
+
+        public void notFindIdMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("ID를 찾을 수 없습니다");
             Console.ReadKey();
         }
 
@@ -191,6 +241,14 @@ namespace Project2_BookStore
         {
             Console.WriteLine("\n 패스워드를 한번 더 입력하세요");
             Console.Write(" → ");
+        }
+
+        public void discordPwMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("패스워드가 맞지 않습니다");
+            Console.ReadKey();
         }
 
         // 이름 관련 출력
@@ -238,7 +296,6 @@ namespace Project2_BookStore
         }
 
         // 결과 출력
-
         public void idRegisterSccessMessage()
         {
             int memberNumber = sd.MemberList.Count();
@@ -253,6 +310,45 @@ namespace Project2_BookStore
             Console.ReadKey();
         }
 
+        public void searchIdResult(int index)
+        {
+            Console.Clear();
+            title("결과 출력");
+            Console.WriteLine("{0} 로 찾으신 정보입니다\n\n", sd.MemberList[index].MemberID);
+            Console.WriteLine(" 이름 : {0}", sd.MemberList[index].MemberName);
+            Console.WriteLine(" 핸드폰 번호 : {0}", sd.MemberList[index].PhoneNum);
+            Console.WriteLine(" 생성 시간 : {0}", sd.MemberList[index].CreateTime);
+
+            Console.WriteLine("\n\n전 메뉴로 가시려면 아무키나 누르세요");
+            Console.ReadKey();
+        }
+
+        public void memberTitle()
+        {
+            this.memeberStartLine();
+            Console.Write("┃{0}", hangleCenterArrange(16, "ID"));
+            Console.Write("┃{0}", hangleCenterArrange(12, "이름"));
+            Console.Write("┃{0}", hangleCenterArrange(12, "핸드폰번호"));
+            Console.WriteLine("┃{0}┃", hangleCenterArrange(24, "생성 시간"));
+            this.memberEndLine();
+        }
+
+        public void memberResult(int index)
+        {
+            Console.Write("┃{0, -16}", sd.MemberList[index].MemberID);
+            Console.Write("┃{0}", hangleCenterArrange(12, sd.MemberList[index].MemberName));
+            Console.Write("┃{0, -12}", sd.MemberList[index].PhoneNum);
+            Console.WriteLine("┃{0, -22}┃", sd.MemberList[index].CreateTime);
+        }
+
+        public void memberListTitle()
+        {
+            Console.Clear();
+            title("회원 출력");
+            Console.WriteLine(" 회원을 전체 출력합니다");
+            this.memberTitle();
+        }
+
         // 종료메뉴
         public void exitMessage()
         {
@@ -260,6 +356,274 @@ namespace Project2_BookStore
             Console.WriteLine("\n\n\n");
             title("도서관리 프로그램을 종료합니다");
             Environment.Exit(0);
+        }
+
+        // 수정관련
+        public void modifyMessage()
+        {
+            Console.Clear();
+            title("로그인 - ID");
+            Console.WriteLine("\n");
+            Console.WriteLine(" 수정을 하기위해 로그인이 필요합니다");
+            Console.WriteLine(" 아이디를 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+        public void enterPwForModify()
+        {
+            Console.Clear();
+            title("로그인 - 패스워드");
+            Console.WriteLine("\n");
+            Console.WriteLine("패스워드를 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+        public void modifyName()
+        {
+            Console.Clear();
+            title("이름 수정");
+            Console.WriteLine("수정할 이름을 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+        public void modifySuccessResult()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("정상적으로 수정되었습니다");
+            Console.ReadLine();
+        }
+
+        public void enterPhoneNumForModify()
+        {
+            Console.Clear();
+            title("핸드폰번호 수정");
+            Console.WriteLine("수정할 번호를 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+        // 삭제 관련
+        public void enterIdForDelete()
+        {
+            Console.Clear();
+            title("삭제 메뉴");
+            Console.WriteLine("\n 삭제할 아이디를 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+        public void enterPwForDelete()
+        {
+            Console.Clear();
+            title("삭제 메뉴");
+            Console.WriteLine("\n 비밀번호를 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+        public void deleteSuceessMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("정상적으로 삭제되었습니다");
+            Console.ReadKey();
+        }
+
+        // 검색 관련
+        public void enterIdForSearch()
+        {
+            Console.Clear();
+            title("아이디로 검색");
+            Console.WriteLine("\n 검색할 아이디를 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+        public void enterNameForSearch()
+        {
+            Console.Clear();
+            title("이름으로 검색");
+            Console.WriteLine("\n 검색할 이름을 입력하세요 (뒤로 가시려면 b 를 입력하세요)");
+            Console.Write(" → ");
+        }
+
+
+        // 도서 관련
+        public void enterBookNameMessage()
+        {
+            Console.Clear();
+            title("도서명 입력");
+            Console.WriteLine("\n 등록할 책 이름을 입력하세요");
+            Console.WriteLine(" 책 이름은 24자까지 가능합니다");
+            Console.WriteLine(" 책 이름은 공백으로 시작할 수 없습니다");
+            Console.WriteLine(" 책 이름의 특수문자는 !, ?, - 만 허용합니다");
+            Console.WriteLine(" 뒤로 가시려면 b 를 입력하세요");
+            Console.Write(" → ");
+        }
+
+        public void bookNameFirstNoSpaceMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 이름은 공백으로 시작할 수 없습니다");
+            Console.ReadKey();
+        }
+
+        public void bookNameLengthOver()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 이름이 너무 짧거나 너무 깁니다");
+            Console.ReadKey();
+        }
+
+        public void bookNameWrongMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 이름이 잘못되었습니다");
+            Console.ReadKey();
+        }
+
+        // 책 저자 관련
+        public void enterBookAuthorMessage()
+        {
+            Console.Clear();
+            title("책 저자 입력");
+            Console.WriteLine("\n 등록한 책의 저자를 입력하세요");
+            Console.WriteLine(" 책 저자는 20자 까지 가능합니다");
+            Console.WriteLine(" 책 저자는 공백으로 시작할 수 없습니다");
+            Console.WriteLine(" 책 저자는 한글, 영어, 공백만 가능합니다");
+            Console.WriteLine(" 뒤로 가시려면 b 를 입력하세요");
+            Console.Write(" → ");
+        }
+
+        public void bookAuthorFirstNoSpaceMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 저자이름은 공백으로 시작할 수 없습니다");
+            Console.ReadKey();
+        }
+
+        public void bookAuthorErrorMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 저자이름은 영어,한글,공백 이외의 문자는 불가능합니다");
+            Console.ReadKey();
+        }
+
+        // 책 수량 관련
+        public void enterBookQuantity()
+        {
+            Console.Clear();
+            title("책 수량 입력");
+            Console.WriteLine("\n 책의 수량은 1권부터 99권까지만 가능합니다");
+            Console.WriteLine(" 책의 수량을 입력해주세요");
+            Console.WriteLine(" 뒤로 가시려면 b 를 입력하세요");
+            Console.Write(" → ");
+        }
+
+        public void bookQuantityOverMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 수량은 1권부터 99권까지만 가능합니다");
+            Console.ReadKey();
+        }
+
+        public void bookQuantityOnlyNumber()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 수량은 숫자만 입력가능하며, 2자리수를 넘을 수 없습니다");
+            Console.ReadKey();
+        }
+
+        // 책 가격 부분
+        public void enterBookPrice()
+        {
+            Console.Clear();
+            title("책 가격 입력");
+            Console.WriteLine("\n 책의 가격을 입력하세요");
+            Console.WriteLine(" 책의 가격은 100만원까지만 가능합니다");
+            Console.WriteLine(" 공백만 입력하거나 아무것도 입력하지 않으시면 FREE로 등록됩니다");
+            Console.WriteLine(" 뒤로 가시려면 b 를 입력하세요");
+            Console.Write(" → ");
+        }
+
+        public void bookPriceOverMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 가격은 백만원을 넘을 수 없습니다");
+            Console.ReadKey();
+        }
+
+        public void bookPriceOnlyNumber()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책 가격은 숫자만 입력하실 수 있습니다");
+            Console.ReadKey();
+        }
+
+        // 책 결과 출력
+        public void bookRegisterSuccessMessage()
+        {
+            Console.Clear();
+            title("정상 등록");
+            Console.WriteLine("\n 책이 정상적으로 등록되었습니다");
+            Console.ReadKey();
+        }
+
+        public void ErrorMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("ERROR !");
+            Console.ReadKey();
+        }
+
+        // 책 찾는 부분
+
+        public void findBookName()
+        {
+            Console.Clear();
+            title("책 검색메뉴");
+            Console.WriteLine("\n 책 이름으로만 검색하실 수 있습니다");
+            Console.WriteLine(" 책 이름부분에 포함되어도 출력합니다");
+            Console.WriteLine(" 공백일 경우 전부 출력합니다");
+            Console.Write(" → ");
+        }
+
+        public void noExistBook()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("책이 존재하지 않습니다");
+            Console.ReadKey();
+        }
+
+        // 책 출력 부분
+        public void bookTitle()
+        {
+            this.bookStartLine();
+            Console.Write("┃{0}", hangleCenterArrange(24, "도서명"));
+            Console.Write("┃{0}", hangleCenterArrange(20, "도서 저자"));
+            Console.Write("┃{0}", hangleCenterArrange(2, "수량"));
+            Console.Write("┃{0}", hangleCenterArrange(8, "가격"));
+            Console.Write("┃{0}", hangleCenterArrange(22, "대여 시간"));
+            Console.WriteLine("┃{0}┃", hangleCenterArrange(16, "대여자"));
+            this.bookEndLine();
+        }
+
+        public void bookElement(int index)
+        {
+            Console.Write("┃{0}", sd.BookList[index].BookName);
+            Console.Write("┃{0}", sd.BookList[index].BookAuthor);
+            Console.Write("┃{0}", sd.BookList[index].BookQuantity);
+            Console.Write("┃{0}", sd.BookList[index].BookPrice);
+            Console.Write("┃{0}", sd.BookList[index].BookRentTime);
+            Console.WriteLine("┃{0}┃", sd.BookList[index].BookRentID);
         }
 
         // length (총길이), strData (문자열) 을 이용해서
@@ -292,6 +656,31 @@ namespace Project2_BookStore
             Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
             Console.WriteLine("\n{0}\n", hangleCenterArrange(124, StrData));
             Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        }
+
+        public void memeberStartLine()
+        {
+            Console.WriteLine("┏━━━━━━━━┳━━━━━━┳━━━━━━┳━━━━━━━━━━━━┓");
+        }
+
+        public void memberMiddleLine()
+        {
+            Console.WriteLine("┣━━━━━━━━╋━━━━━━╋━━━━━━╋━━━━━━━━━━━━┫");
+        }
+
+        public void memberEndLine()
+        {
+            Console.WriteLine("┗━━━━━━━━┻━━━━━━┻━━━━━━┻━━━━━━━━━━━━┛");
+        }
+
+        public void bookStartLine()
+        {
+            Console.WriteLine("┏━━━━━━━━━━━━┳━━━━━━━━━━┳━━┳━━━━┳━━━━━━━━━━━┳━━━━━━━━┓");
+        }
+
+        public void bookEndLine()
+        {
+            Console.WriteLine("┗━━━━━━━━━━━━┻━━━━━━━━━━┻━━┻━━━━┻━━━━━━━━━━━┻━━━━━━━━┛");
         }
     } // Class - PrintMenu
 }

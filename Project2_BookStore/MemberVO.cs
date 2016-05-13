@@ -11,7 +11,7 @@ namespace Project2_BookStore
         private string memberID;
         private string memberName;
         private string createTime;
-        private string PW;
+        private string pw;
         private string phoneNum;
 
         public MemberVO() { }
@@ -20,7 +20,7 @@ namespace Project2_BookStore
             this.memberID = memberID;
             this.memberName = memberName;
             this.createTime = createTime;
-            this.PW = PW;
+            this.pw = PW;
             this.PhoneNum = phoneNum;
         }
 
@@ -42,10 +42,10 @@ namespace Project2_BookStore
             set { createTime = value; }
         }
 
-        public string PW1
+        public string PW
         {
-            get { return PW; }
-            set { PW = value; }
+            get { return pw; }
+            set { pw = value; }
         }
 
         public string PhoneNum

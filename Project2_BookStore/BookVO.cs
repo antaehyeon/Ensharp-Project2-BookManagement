@@ -10,20 +10,20 @@ namespace Project2_BookStore
     {
         private string bookName;
         private string bookAuthor;
-        private int bookPrice;
-        private int bookQuantity;
+        private string bookPrice;
+        private string bookQuantity;
         private string bookRentTime;
         private string bookRentID;
 
         public BookVO() { }
-        public BookVO(string bookName, string bookAuthor, int bookPrice, int bookQuantity, string bookRentTime, string bookRentID)
+        public BookVO(string bookName, string bookAuthor, string bookPrice, string bookQuantity)
         {
             this.bookName = bookName;
-            this.bookAuthor = BookAuthor;
-            this.bookPrice = BookPrice;
-            this.bookQuantity = BookQuantity;
-            this.bookRentTime = BookRentTime;
-            this.bookRentID = bookRentID;
+            this.bookAuthor = bookAuthor;
+            this.bookPrice = bookPrice;
+            this.bookQuantity = bookQuantity;
+            this.bookRentTime = "";
+            this.bookRentID = "";
         }
 
         public string BookName
@@ -38,13 +38,13 @@ namespace Project2_BookStore
             set { bookAuthor = value; }
         }
 
-        public int BookPrice
+        public string BookPrice
         {
             get { return bookPrice; }
             set { bookPrice = value; }
         }
 
-        public int BookQuantity
+        public string BookQuantity
         {
             get { return bookQuantity; }
             set { bookQuantity = value; }

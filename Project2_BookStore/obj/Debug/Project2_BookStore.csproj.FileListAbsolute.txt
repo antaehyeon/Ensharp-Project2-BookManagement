@@ -67,3 +67,6 @@ C:\Users\Taehyeon AN\Documents\Ensharp-Project2-BookManagement\Project2_BookStor
 C:\Users\Taehyeon AN\Documents\Ensharp-Project2-BookManagement\Project2_BookStore\bin\Debug\Project2_BookStore.exe
 C:\Users\Taehyeon AN\Documents\Ensharp-Project2-BookManagement\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
 C:\Users\Taehyeon AN\Documents\Ensharp-Project2-BookManagement\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
+C:\Users\Taehyeon AN\Desktop\Ensharp-Project2-BookManagement\Project2_BookStore\bin\Debug\Project2_BookStore.exe
+C:\Users\Taehyeon AN\Desktop\Ensharp-Project2-BookManagement\Project2_BookStore\bin\Debug\Project2_BookStore.pdb
+C:\Users\Taehyeon AN\Desktop\Ensharp-Project2-BookManagement\Project2_BookStore\obj\Debug\Project2_BookStore.csprojResolveAssemblyReference.cache
