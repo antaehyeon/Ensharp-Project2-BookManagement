@@ -46,13 +46,13 @@ namespace Project2_BookStore
                     sPattern = "^[0-9]{10,11}$";
                     break;
                 case 4: // 책 저자 (영어,한글,공백만, 2~20자 제한)
-                    sPattern = "^[a-zA-Z가-힣' ']{2,20}$";
+                    sPattern = "^[a-zA-Z가-힣' ']{2,10}$";
                     break;
                 case 5: // 책 가격 (숫자만 가능) , 책 수량 (숫자만 가능)
-                    sPattern = "^([1-9_]+)([0-9]+)$";
+                    sPattern = "^([1-9][0-9]*)$";
                     break;
-                case 6: // 책 이름 (한글,영어,공백,숫자,몇가지 특문만 허용, 1-24자 제한)
-                    sPattern = "^[a-zA-Z0-9가-힣' '!?-]{2,20}$";
+                case 6: // 책 이름 (한글,영어,공백,숫자,몇가지 특문만 허용, 1-10자 제한)
+                    sPattern = "^[a-zA-Z0-9가-힣' '!?-]{2,16}$";
                     break;
             }
         
@@ -95,17 +95,17 @@ namespace Project2_BookStore
                 print.lengthNotSatisfyMessage(); // ERROR
                 return true;
             }
-            if (this.stringFirstLetterNumCheck(ID)) // ID 첫문자가 숫자일경우
+            if (stringFirstLetterNumCheck(ID)) // ID 첫문자가 숫자일경우
             {
                 print.idFirstLetterNoNumMessage(); // ERROR
                 return true;
             }
-            if (this.stringLength(ID, 14)) // 입력받은 문자의 길이가 14를 넘는조건
+            if (stringLength(ID, 14)) // 입력받은 문자의 길이가 14를 넘는조건
             {
                 print.lengthOverMessage(); // ERROR
                 return true;
             }
-            if (this.stringCheck(ID, 1)) // 영어와 숫자만 들어가있는지 판별
+            if (stringCheck(ID, 1)) // 영어와 숫자만 들어가있는지 판별
             {
                 print.onlyEnglishAndNumMessage(); // ERROR
                 return true;
@@ -140,7 +140,7 @@ namespace Project2_BookStore
         // PhoneNum Check
         public bool phoneNumCheck(string phoneNum)
         {
-            if (this.stringCheck(phoneNum, 3))
+            if (stringCheck(phoneNum, 3))
             {
                 print.phoneNumLengthOverMessage();
                 return true;
@@ -159,12 +159,12 @@ namespace Project2_BookStore
         // BookName Check
         public bool bookNameCheck(string bookName)
         {
-            if (string.IsNullOrWhiteSpace(bookName) || this.stringFirstLetterSpaceCheck(bookName))
+            if (string.IsNullOrWhiteSpace(bookName) || stringFirstLetterSpaceCheck(bookName))
             {
                 print.bookNameFirstNoSpaceMessage();
                 return true;
             }
-            if (this.stringCheck(bookName, 6))
+            if (stringCheck(bookName, 6))
             {
                 print.bookNameWrongMessage();
                 return true;
@@ -175,12 +175,12 @@ namespace Project2_BookStore
         // BookAuthor Check
         public bool bookAuthorCheck(string bookAuthor)
         {
-            if (string.IsNullOrWhiteSpace(bookAuthor) || this.stringFirstLetterSpaceCheck(bookAuthor))
+            if (string.IsNullOrWhiteSpace(bookAuthor) || stringFirstLetterSpaceCheck(bookAuthor))
             {
                 print.bookAuthorFirstNoSpaceMessage();
                 return true;
             }
-            if (this.stringCheck(bookAuthor, 4))
+            if (stringCheck(bookAuthor, 4))
             {
                 print.bookAuthorErrorMessage();
                 return true;
@@ -196,7 +196,7 @@ namespace Project2_BookStore
                 print.bookQuantityOverMessage();
                 return true;
             }
-            if (this.stringCheck(bookQuantity, 5))
+            if (stringCheck(bookQuantity, 5))
             {
                 print.ErrorMessage();
                 return true;
@@ -216,7 +216,7 @@ namespace Project2_BookStore
             {
                 return false;
             }
-            if (this.stringCheck(bookPrice, 5))
+            if (stringCheck(bookPrice, 5))
             {
                 print.bookPriceOnlyNumber();
                 return true;
@@ -224,6 +224,17 @@ namespace Project2_BookStore
             if (Convert.ToInt32(bookPrice) > 1000000)
             {
                 print.bookPriceOverMessage();
+                return true;
+            }
+            return false;
+        }
+
+        // BookNo Check
+        public bool bookNoCheck(string no)
+        {
+            if (stringCheck(no, 5))
+            {
+                print.ErrorMessage();
                 return true;
             }
             return false;

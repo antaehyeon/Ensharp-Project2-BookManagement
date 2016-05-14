@@ -8,6 +8,7 @@ namespace Project2_BookStore
 {
     class BookVO
     {
+        private string bookNo;
         private string bookName;
         private string bookAuthor;
         private string bookPrice;
@@ -16,14 +17,21 @@ namespace Project2_BookStore
         private string bookRentID;
 
         public BookVO() { }
-        public BookVO(string bookName, string bookAuthor, string bookPrice, string bookQuantity)
+        public BookVO(string bookNo, string bookName, string bookAuthor, string bookPrice, string bookQuantity)
         {
+            this.bookNo = bookNo;
             this.bookName = bookName;
             this.bookAuthor = bookAuthor;
             this.bookPrice = bookPrice;
             this.bookQuantity = bookQuantity;
             this.bookRentTime = "";
             this.bookRentID = "";
+        }
+
+        public string BookNo
+        {
+            get { return bookNo; }
+            set { bookNo = value; }
         }
 
         public string BookName

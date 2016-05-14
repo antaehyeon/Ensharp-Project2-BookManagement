@@ -11,7 +11,7 @@ namespace Project2_BookStore
         Print print;
         MemberManagement member;
         BookManagement book;
-        
+
 
         public Run()
         {
@@ -29,14 +29,16 @@ namespace Project2_BookStore
             switch (selectMenu)
             {
                 case 8: // 회원등록
-                    this.startMember();
+                    startMember();
                     break;
                 case 9: // 도서관리
-                    this.bookMenu();
+                    bookMenu();
                     break;
                 case 10: // 도서대여
+                    book.rentBook();
                     break;
                 case 11: // 도서반납
+                    book.returnBook();
                     break;
                 case 12: // 종료
                     print.exitMessage();
@@ -61,13 +63,13 @@ namespace Project2_BookStore
                         member.deleteMember();
                         break;
                     case 11: // 회원검색
-                        this.searchMenu();
+                        searchMenu();
                         break;
                     case 12: // 회원출력
                         member.printMember();
                         break;
                     case 13: // 뒤로가기
-                        this.start();
+                        start();
                         break;
                 }
             }
@@ -105,7 +107,7 @@ namespace Project2_BookStore
                     member.searchNameFunction();
                     break;
                 case 10: // 뒤로가기
-                    this.startMember();
+                    startMember();
                     break;
             }
         } // Method - searchMenu
@@ -113,7 +115,7 @@ namespace Project2_BookStore
         // 책 관리메뉴
         public void bookMenu()
         {
-            switch(print.moveArrow(56, 8, 6, 5))
+            switch (print.moveArrow(56, 8, 6, 5))
             {
                 case 8: // 도서등록
                     book.registerBookFunction(1);
@@ -122,15 +124,48 @@ namespace Project2_BookStore
                     book.findBookFunction();
                     break;
                 case 10: // 도서출력
+                    book.printBookFunction();
                     break;
                 case 11: // 도서삭제
+                    book.deleteBookFunction();
                     break;
                 case 12: // 도서변경
+                    book.changeBookFunction();
                     break;
                 case 13: // 뒤로가기
-                    this.start();
+                    start();
                     break;
             }
         } // Method - bookMenu
+
+        public void bookInfoChangeMenu()
+        {
+            switch (print.moveArrow(56, 8, 6, 6))
+            {
+                case 8: // 책 이름수정
+                    book.changeNameFunc();
+                    bookMenu();
+                    break;
+                case 9: // 책 저자수정
+                    book.changeAuthorFunc();
+                    bookMenu();
+                    break;
+                case 10: // 책 수량변경
+                    book.changeQuantityFunc();
+                    bookMenu();
+                    break;
+                case 11: // 책 가격변경
+                    book.changePriceFunc();
+                    bookMenu();
+                    break;
+                case 12: // 전체
+                    book.chnageAllFunc();
+                    bookMenu();
+                    break;
+                case 13: // 뒤로가기
+                    book.modifyBookSelect();
+                    break;
+            }
+        } // Method - bookInfoChangeMenu
     }
 }

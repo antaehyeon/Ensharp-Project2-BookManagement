@@ -34,15 +34,15 @@ namespace Project2_BookStore
             {
                 case 1: // ID
                     ID = enterIdFunction();
-                    this.registerID(2);
+                    registerID(2);
                     break;
                 case 2: // PW
                     PW = enterPwFunction();
-                    this.registerID(3);
+                    registerID(3);
                     break;
                 case 3: // Name
                     name = enterNameFunction();
-                    this.registerID(4);
+                    registerID(4);
                     break;
                 case 4: // PhoneNumber
                     phoneNum = enterPhoneNumFunction();
@@ -65,7 +65,7 @@ namespace Project2_BookStore
             if (ID == "b") run.startMember(); // 뒤로가기
             if (exception.idCheck(ID))
             {
-                this.enterIdFunction();
+                enterIdFunction();
             }
             return ID;
         }
@@ -83,7 +83,7 @@ namespace Project2_BookStore
 
             if(exception.pwCheck(PW, tempPW))
             {
-                this.enterPwFunction();
+                enterPwFunction();
             }
             return PW;
         }
@@ -97,7 +97,7 @@ namespace Project2_BookStore
             if (exception.stringCheck(name, 2))
             {
                 print.nameErrorMessage();
-                this.enterNameFunction();
+                enterNameFunction();
             }
             return name;
         }
@@ -110,7 +110,7 @@ namespace Project2_BookStore
             if (phoneNum == "b") run.startMember();
             if (exception.phoneNumCheck(phoneNum))
             {
-                this.enterPhoneNumFunction();
+                enterPhoneNumFunction();
             }
             return phoneNum;
         }
@@ -143,7 +143,7 @@ namespace Project2_BookStore
                 }
             }
             print.notFindIdMessage();
-            this.modifyMember();
+            modifyMember();
         }
 
         // 이름수정
@@ -151,10 +151,10 @@ namespace Project2_BookStore
         {
             print.modifyName();
             name = Console.ReadLine();
-            if (name == "b") this.modifyMember();
+            if (name == "b") modifyMember();
             if (exception.stringCheck(name, 2))
             {
-                this.modifyName();
+                modifyName();
             }
             sd.MemberList[index].MemberName = name;
             print.modifySuccessResult();
@@ -167,7 +167,7 @@ namespace Project2_BookStore
             phoneNum = Console.ReadLine();
             if(exception.phoneNumCheck(phoneNum))
             {
-                this.modifyPhoneNum();
+                modifyPhoneNum();
             }
             sd.MemberList[index].PhoneNum = phoneNum;
             print.modifySuccessResult();
@@ -180,7 +180,7 @@ namespace Project2_BookStore
             PW = Console.ReadLine();
             if (exception.pwCheck(PW, PW))
             {
-                this.modifyPassword();
+                modifyPassword();
             }
             sd.MemberList[index].PW = PW;
             print.modifySuccessResult();
@@ -196,7 +196,7 @@ namespace Project2_BookStore
             if (index == -1) // MemberList에 ID가 없을경우
             {
                 print.notFindIdMessage();
-                this.deleteMember();
+                deleteMember();
             }
             while(true)
             {
@@ -226,7 +226,7 @@ namespace Project2_BookStore
             if (index == -1)
             {
                 print.notFindIdMessage();
-                this.searchIdFunction();
+                searchIdFunction();
             }
             print.searchIdResult(index);
             run.searchMenu();

@@ -12,12 +12,13 @@ namespace Project2_BookStore
         private List<MemberVO> memberList;
         private List<BookVO> bookList;
 
+        private int registeredBookQuantity = 0;
+
         public SharingData()
         {
             MemberList = new List<MemberVO>();
             BookList = new List<BookVO>();
         }
-
 
         public static SharingData GetInstance()
         {
@@ -37,8 +38,10 @@ namespace Project2_BookStore
             set { bookList = value; }
         }
 
-
-
-
+        public int RegisteredBookQuantity
+        {
+            get { return registeredBookQuantity; }
+            set { registeredBookQuantity = value; }
+        }
     }
 }
