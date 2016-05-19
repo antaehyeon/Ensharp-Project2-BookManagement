@@ -20,6 +20,7 @@ namespace Project2_BookStore
 
         private int index;
 
+        // 생성자
         public MemberManagement(Run run)
         {
             exception = new Exception();
@@ -28,6 +29,7 @@ namespace Project2_BookStore
             this.run = run;
         } 
 
+        // 아이디 등록 메소드
         public void registerID(int mode)
         {
             switch (mode)
@@ -76,7 +78,7 @@ namespace Project2_BookStore
             string tempPW;
             print.enterPwMessage();
             PW = showStarPW();
-            if (PW == "b") run.startMember();
+            if (PW == "b") registerID(1);
             print.checkPwMessage();
             tempPW = showStarPW();
             if (tempPW == "b") run.startMember();
@@ -93,7 +95,7 @@ namespace Project2_BookStore
         {
             print.enterName();
             name = Console.ReadLine();
-            if (name == "b") run.startMember();
+            if (name == "b") registerID(2);
             if (exception.stringCheck(name, 2))
             {
                 print.nameErrorMessage();
@@ -107,7 +109,7 @@ namespace Project2_BookStore
         {
             print.enterPhoneNum();
             phoneNum = Console.ReadLine();
-            if (phoneNum == "b") run.startMember();
+            if (phoneNum == "b") registerID(3);
             if (exception.phoneNumCheck(phoneNum))
             {
                 enterPhoneNumFunction();
@@ -177,7 +179,7 @@ namespace Project2_BookStore
         public void modifyPassword()
         {
             print.enterPwForModify();
-            PW = Console.ReadLine();
+            PW = showStarPW();
             if (exception.pwCheck(PW, PW))
             {
                 modifyPassword();
@@ -205,7 +207,13 @@ namespace Project2_BookStore
                 if (PW == "b") run.startMember();
                 if (sd.MemberList[index].PW == PW)
                 {
+                    if (checkRentBook(ID))
+                    {
+                        print.idHaveRentBook();
+                        run.bookMenu();
+                    }
                     print.deleteSuceessMessage();
+                    sd.MemberList.RemoveAt(index);
                     run.startMember();
                 }
                 else
@@ -214,6 +222,18 @@ namespace Project2_BookStore
                     continue;
                 }
             }
+        }
+
+        public bool checkRentBook(string ID)
+        {
+            for (int i = 0; i < sd.MemberList.Count; i++)
+            {
+                if (ID == sd.BookList[i].BookRentID)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         // 회원검색 - 아이디

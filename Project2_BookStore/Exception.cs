@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Project2_BookStore
 {
@@ -17,7 +18,6 @@ namespace Project2_BookStore
             sd = SharingData.GetInstance();
         } 
 
-
         // param : 입력받은 숫자에 따라서 문자열의 길이를 제한한다
         // true : 조건충족
         // false : 문자열의 길이가 입력받은 숫자보다 큼
@@ -31,6 +31,9 @@ namespace Project2_BookStore
         // MODE 1 : (영어, 숫자 6-14자 제한)
         // MODE 2 : (한글만, 2-6자 제한)
         // MODE 3 : (숫자만, 10~11자 제한)
+        // MODE 4 : 책 저자
+        // MODE 5 : 책 가격
+        // MODE 6 : 책 이름
         public bool stringCheck(string str, int mode)
         {
             string sPattern = "";
@@ -45,13 +48,13 @@ namespace Project2_BookStore
                 case 3: // 핸드폰번호쪽 (숫자만, 10~11자 제한)
                     sPattern = "^[0-9]{10,11}$";
                     break;
-                case 4: // 책 저자 (영어,한글,공백만, 2~20자 제한)
+                case 4: // 책 저자 (영어,한글,공백만, 2~10자 제한)
                     sPattern = "^[a-zA-Z가-힣' ']{2,10}$";
                     break;
                 case 5: // 책 가격 (숫자만 가능) , 책 수량 (숫자만 가능)
                     sPattern = "^([1-9][0-9]*)$";
                     break;
-                case 6: // 책 이름 (한글,영어,공백,숫자,몇가지 특문만 허용, 1-10자 제한)
+                case 6: // 책 이름 (한글,영어,공백,숫자,몇가지 특문만 허용, 1-16자 제한)
                     sPattern = "^[a-zA-Z0-9가-힣' '!?-]{2,16}$";
                     break;
             }
@@ -156,6 +159,42 @@ namespace Project2_BookStore
             return false;
         }
 
+        // Book exist Check
+        public bool existBookCheck(string bookName, string bookAuthor)
+        {
+            string extractionBookName = extractionStr(bookName, 1);
+            string extractionBookAuthor = extractionStr(bookAuthor, 2);
+
+            for ( int i = 0; i < sd.BookList.Count; i++)
+            {
+                if (extractionStr(sd.BookList[i].BookName, 1) == extractionBookName && 
+                    extractionStr(sd.BookList[i].BookAuthor, 2) == extractionBookAuthor)
+                {
+                    print.alreadyExistBook();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 책이 있는지 비교하기 위해 특정문자만 추출해내는 메소드
+        // MODE 1 : 책 이름 공백제외해서 추출
+        // MODE 2 : 저자 이름 공백제외해서 추출
+        public string extractionStr(string str, int mode)
+        {
+            string extractionStrData = "";
+            switch (mode)
+            {
+                case 1:
+                    extractionStrData = Regex.Replace(str, @"[^a-zA-Z0-9가-힣!?-]", "");
+                    break;
+                case 2:
+                    extractionStrData = Regex.Replace(str, @"[^a-zA-Z가-힣]", "");
+                    break;
+            }
+            return extractionStrData;
+        }
+
         // BookName Check
         public bool bookNameCheck(string bookName)
         {
@@ -221,7 +260,12 @@ namespace Project2_BookStore
                 print.bookPriceOnlyNumber();
                 return true;
             }
-            if (Convert.ToInt32(bookPrice) > 1000000)
+            if (bookPrice.Length > 7)
+            {
+                print.bookPriceOverMessage();
+                return true;
+            }
+            if (int.Parse(bookPrice) > 1000000)
             {
                 print.bookPriceOverMessage();
                 return true;

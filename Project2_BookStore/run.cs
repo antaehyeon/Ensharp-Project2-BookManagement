@@ -78,7 +78,7 @@ namespace Project2_BookStore
         // 수정메뉴
         public void modifyMenu()
         {
-            switch (print.moveArrow(54, 8, 4, 3))
+            switch (print.moveArrow(55, 8, 4, 3))
             {
                 case 8: // 이름
                     member.modifyName();

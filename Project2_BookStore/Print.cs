@@ -444,6 +444,14 @@ namespace Project2_BookStore
             Console.ReadKey();
         }
 
+        public void idHaveRentBook()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("해당 아이디에 대여된 책이 있어 삭제가 불가능합니다");
+            Console.ReadKey();
+        }
+
         // 검색 관련
         public void enterIdForSearch()
         {
@@ -496,6 +504,14 @@ namespace Project2_BookStore
             Console.Clear();
             Console.WriteLine("\n\n\n\n");
             title("책 이름이 잘못되었습니다");
+            Console.ReadKey();
+        }
+
+        public void alreadyExistBook()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n\n\n");
+            title("같은 책이 이미 존재합니다");
             Console.ReadKey();
         }
 

@@ -52,6 +52,8 @@ namespace Project2_BookStore
                     break;
             }
 
+            if (exception.existBookCheck(bookName, bookAuthor)) run.start();
+
             // bookNo = regBookQuantity (등록된 갯수)
             sd.RegisteredBookQuantity++;
             regBookQuantity = Convert.ToString(sd.RegisteredBookQuantity);
@@ -164,12 +166,21 @@ namespace Project2_BookStore
                 sd.BookList.RemoveAt(index);
                 print.bookDeleteSuccessMessage();
                 sd.RegisteredBookQuantity--;
+                setBookNo();
                 this.deleteBookFunction();
             }
             else
             {
                 print.ErrorMessage();
                 this.deleteBookFunction();
+            }
+        }
+
+        public void setBookNo()
+        {
+            for (int i = 0; i< sd.RegisteredBookQuantity; i++)
+            {
+                sd.BookList[i].BookNo = Convert.ToString(i + 1);
             }
         }
 
